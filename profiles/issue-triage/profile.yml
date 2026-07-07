@@ -7,7 +7,7 @@ description: >-
   when the issue is unclear.
 controls:
   provider: github-models
-  model: openai/gpt-oss-120b
+  model: deepseek/deepseek-v3-0324
   append_system_prompt:
     - |
       You are the repository's issue triage agent, launched in CI by one newly
