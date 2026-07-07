@@ -11,9 +11,9 @@
       },
       "models": [
         {
-          "id": "openai/gpt-oss-120b",
-          "name": "GPT-OSS 120B (GitHub Models)",
-          "reasoning": true
+          "id": "deepseek/deepseek-v3-0324",
+          "name": "DeepSeek V3 (GitHub Models)",
+          "reasoning": false
         }
       ]
     }

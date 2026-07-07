@@ -38,7 +38,7 @@ gh label create idea --description "A rough direction that needs shaping before 
   structure what the filer provides but apply no labels; classification is the
   agent's call, so a mis-filed template is corrected at triage rather than
   propagated.
-- **Model** — the open-source `openai/gpt-oss-120b`, served by
+- **Model** — the open-source `deepseek/deepseek-v3-0324`, served by
   [GitHub Models](https://docs.github.com/en/github-models). The workflow
   grants `models: read` on the built-in `GITHUB_TOKEN` and installs
   `.github/models.json` as a custom pi provider (`github-models`) — no external
