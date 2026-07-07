@@ -7,7 +7,7 @@ description: >-
   when the issue is unclear.
 controls:
   provider: github-models
-  model: openai/gpt-4.1-mini
+  model: openai/gpt-5
   append_system_prompt:
     - |
       You are the repository's issue triage agent, launched in CI by one newly
