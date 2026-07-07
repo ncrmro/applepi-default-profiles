@@ -8,6 +8,7 @@ Default profile source for Outfitter users.
 - `engineer` - engineering setup for repository navigation, maintainable code changes, tests, and reviews.
 - `data-analyst` - data analysis setup for careful inspection, reproducible methods, assumptions, and summaries. See [docs/data-analyst.md](docs/data-analyst.md).
 - `media-editor` - video post-production setup for transcript-driven editing with whisper.cpp and ffmpeg. See [docs/media-editor.md](docs/media-editor.md).
+- `issue_triage` - CI triage agent that labels newly opened issues `fix`/`feature`/`idea` against CONTRIBUTING.md standards. See [docs/issue-triage.md](docs/issue-triage.md).
 
 ## Quick start
 

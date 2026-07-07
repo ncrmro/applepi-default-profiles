@@ -1,0 +1,34 @@
+# Triage every newly opened issue: the agent classifies it as fix/feature/idea,
+# applies that one label, and leaves a comment (or asks a team member to look
+# when unclear). Runs on an open-source model (openai/gpt-oss-120b) via GitHub
+# Models — `models: read` is all the inference auth needed.
+name: Issue triage
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+  issues: write
+  models: read
+
+jobs:
+  triage:
+    # Never triage issues the automation itself opened.
+    if: github.event.issue.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure GitHub Models provider for pi
+        run: |
+          mkdir -p "$HOME/.pi/agent"
+          cp .github/models.json "$HOME/.pi/agent/models.json"
+      - uses: ai-outfitter/actions@v1
+        with:
+          profile: issue_triage
+          profile-source: profiles
+          # Pass the issue by number only; the profile fetches content with
+          # `gh` so untrusted issue text never enters workflow code.
+          prompt: >-
+            Triage issue #${{ github.event.issue.number }} in
+            ${{ github.repository }} following your process.
