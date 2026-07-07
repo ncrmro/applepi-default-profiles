@@ -27,7 +27,9 @@ jobs:
       - uses: ai-outfitter/actions@main
         with:
           profile: issue-triage
-          profile-source: profiles
+          # Absolute path: outfitter resolves relative path sources against /,
+          # not the workspace (see ai-outfitter/actions path handling).
+          profile-source: ${{ github.workspace }}/profiles
           # Pass the issue by number only; the profile fetches content with
           # `gh` so untrusted issue text never enters workflow code.
           prompt: >-
