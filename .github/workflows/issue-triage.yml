@@ -23,8 +23,8 @@ jobs:
         run: |
           mkdir -p "$HOME/.pi/agent"
           cp .github/models.json "$HOME/.pi/agent/models.json"
-      # Pinned to a commit until ai-outfitter/actions tags v1.
-      - uses: ai-outfitter/actions@f5b8e9913cf35bfe67522c70c136fe1e70ee84b7
+      # Track main while validating; switch to @v1 once the tag exists.
+      - uses: ai-outfitter/actions@main
         with:
           profile: issue-triage
           profile-source: profiles
