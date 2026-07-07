@@ -11,8 +11,8 @@
       },
       "models": [
         {
-          "id": "meta/llama-4-maverick-17b-128e-instruct-fp8",
-          "name": "Llama 4 Maverick (GitHub Models)",
+          "id": "openai/gpt-4.1-mini",
+          "name": "GPT-4.1 mini (GitHub Models)",
           "reasoning": false
         }
       ]

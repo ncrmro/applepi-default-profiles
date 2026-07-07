@@ -7,7 +7,7 @@ description: >-
   when the issue is unclear.
 controls:
   provider: github-models
-  model: meta/llama-4-maverick-17b-128e-instruct-fp8
+  model: openai/gpt-4.1-mini
   append_system_prompt:
     - |
       You are the repository's issue triage agent, launched in CI by one newly
