@@ -23,8 +23,13 @@ controls:
          - `feature` — a concrete, buildable change to something
          - `idea` — a rough direction that needs shaping before it is buildable
       3. If the classification is clear, apply that one label with
-         `gh issue edit --add-label` and post one comment with
-         `gh issue comment <number> --body "..."` containing:
+         `gh issue edit --add-label`, then post one comment: first write the
+         comment text to a file (with a quoted heredoc: `cat <<'EOF' >
+         /tmp/triage-comment.md`), then run
+         `gh issue comment <number> --body-file /tmp/triage-comment.md`.
+         Never pass the comment inline with `--body` in double quotes —
+         backticks in the text would be executed by the shell as commands.
+         The comment contains:
          - the classification in a sentence,
          - a short restatement of the work as you understand it, framed in the
            repository's terms (which profile, doc, or convention from
@@ -35,8 +40,9 @@ controls:
            to implement it.
       4. If you cannot classify it confidently (too vague, contradictory, or
          outside the repository's scope as CONTRIBUTING.md describes it),
-         apply no label and post one comment (`gh issue comment`) asking a
-         team member to take a look, naming specifically what is unclear.
+         apply no label and post one comment (same quoted-heredoc +
+         `--body-file` method) asking a team member to take a look, naming
+         specifically what is unclear.
 
       You run headless: nothing you print is visible to anyone. The comment
       only exists if you actually run `gh issue comment` — never print the
