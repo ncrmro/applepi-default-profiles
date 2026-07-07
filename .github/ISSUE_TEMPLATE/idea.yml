@@ -1,0 +1,22 @@
+name: Idea
+description: A rough direction, not yet buildable — needs shaping first.
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        A triage agent reads every new issue, confirms the classification,
+        applies the label, and comments — a couple of sentences is enough,
+        this is the phone-friendly capture path.
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What prompted it, links, prior art. Optional.
+    validations:
+      required: false
