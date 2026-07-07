@@ -1,7 +1,13 @@
 # Triage every newly opened issue: the agent classifies it as fix/feature/idea,
 # applies that one label, and leaves a comment (or asks a team member to look
-# when unclear). Runs on GitHub Models (openai/gpt-5) with zero API
+# when unclear). Runs on GitHub Models (openai/gpt-5-mini) with zero API
 # keys — `models: read` is all the inference auth needed.
+#
+# Model choice is rate-limit-bound, not quality-bound: full gpt-5 sits in
+# GitHub Models' most restricted tier and 429'd mid-run every time we tried
+# it (even a single serial run — an agentic loop burns several requests in
+# seconds). gpt-5-mini's looser tier survives the loop. If you change the
+# model, re-validate a full run, not just the first response.
 name: Issue triage
 on:
   issues:

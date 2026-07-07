@@ -7,7 +7,9 @@ description: >-
   when the issue is unclear.
 controls:
   provider: github-models
-  model: openai/gpt-5
+  # gpt-5-mini, not full gpt-5: the full model's GitHub Models rate tier is
+  # too tight for an agentic loop and 429s mid-run (observed July 2026).
+  model: openai/gpt-5-mini
   append_system_prompt:
     - |
       You are the repository's issue triage agent, launched in CI by one newly
