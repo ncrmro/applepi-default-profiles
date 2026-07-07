@@ -1,6 +1,6 @@
 # Triage every newly opened issue: the agent classifies it as fix/feature/idea,
 # applies that one label, and leaves a comment (or asks a team member to look
-# when unclear). Runs on GitHub Models (openai/gpt-4.1-mini) with zero API
+# when unclear). Runs on GitHub Models (openai/gpt-5) with zero API
 # keys — `models: read` is all the inference auth needed.
 name: Issue triage
 on:
@@ -35,3 +35,18 @@ jobs:
           prompt: >-
             Triage issue #${{ github.event.issue.number }} in
             ${{ github.repository }} following your process.
+      # A green agent run is not proof of work — validate the side effects:
+      # exactly one triage label (or the unclear-issue path) and a comment.
+      # Pinned to the commit that adds the script; move to @main / @v1 once
+      # ai-outfitter/actions#3 merges.
+      - name: Validate triage side effects
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -fsSL -o /tmp/validate-triage.sh \
+            https://raw.githubusercontent.com/ai-outfitter/actions/8626a9465170fd14c0f87f52a9147f9f2545ce46/scripts/validate-triage.sh
+          chmod +x /tmp/validate-triage.sh
+          /tmp/validate-triage.sh \
+            --repo "${{ github.repository }}" \
+            --issue "${{ github.event.issue.number }}" \
+            --allow-unlabeled

@@ -38,7 +38,7 @@ gh label create idea --description "A rough direction that needs shaping before 
   structure what the filer provides but apply no labels; classification is the
   agent's call, so a mis-filed template is corrected at triage rather than
   propagated.
-- **Model** — `openai/gpt-4.1-mini`, served by
+- **Model** — `openai/gpt-5`, served by
   [GitHub Models](https://docs.github.com/en/github-models). The workflow
   grants `models: read` on the built-in `GITHUB_TOKEN` and installs
   `.github/models.json` as a custom pi provider (`github-models`) — no external
