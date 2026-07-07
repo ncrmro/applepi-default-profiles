@@ -1,0 +1,28 @@
+name: Fix request
+description: Something is broken or behaving wrongly.
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        A triage agent reads every new issue, confirms the classification,
+        applies the label, and comments — no need to label anything yourself.
+  - type: textarea
+    id: broken
+    attributes:
+      label: What is broken
+      description: Observed behavior, error output, or the failing command.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: Exact steps or commands, e.g. the `outfitter` invocation and profile.
+    validations:
+      required: false

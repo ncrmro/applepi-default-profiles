@@ -1,0 +1,23 @@
+name: Feature request
+description: A concrete, buildable change — new profile, skill, or improvement.
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        A triage agent reads every new issue, confirms the classification,
+        applies the label, and comments — no need to label anything yourself.
+        Rough directions that aren't buildable yet fit better as an Idea.
+  - type: textarea
+    id: what
+    attributes:
+      label: What to build
+      description: The change, described concretely enough to implement.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: The problem this solves or the workflow it improves.
+    validations:
+      required: true

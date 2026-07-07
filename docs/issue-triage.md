@@ -21,6 +21,10 @@ implementation agents later.
 
 - **Trigger** — `issues: [opened]`; not label-driven, the agent itself does the
   labeling (hard-limited to the three labels above).
+- **Templates** — three issue forms (fix request, feature request, idea) that
+  structure what the filer provides but apply no labels; classification is the
+  agent's call, so a mis-filed template is corrected at triage rather than
+  propagated.
 - **Model** — the open-source `openai/gpt-oss-120b`, served by
   [GitHub Models](https://docs.github.com/en/github-models). The workflow
   grants `models: read` on the built-in `GITHUB_TOKEN` and installs
