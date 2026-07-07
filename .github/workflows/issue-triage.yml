@@ -1,13 +1,15 @@
 # Triage every newly opened issue: the agent classifies it as fix/feature/idea,
 # applies that one label, and leaves a comment (or asks a team member to look
-# when unclear). Runs on GitHub Models (openai/gpt-5-mini) with zero API
+# when unclear). Runs on GitHub Models (openai/gpt-4.1-mini) with zero API
 # keys — `models: read` is all the inference auth needed.
 #
-# Model choice is rate-limit-bound, not quality-bound: full gpt-5 sits in
-# GitHub Models' most restricted tier and 429'd mid-run every time we tried
-# it (even a single serial run — an agentic loop burns several requests in
-# seconds). gpt-5-mini's looser tier survives the loop. If you change the
-# model, re-validate a full run, not just the first response.
+# Model choice is limit-bound, not quality-bound (measured July 2026):
+# full gpt-5 429s mid-loop every run (frontier tier can't absorb an agentic
+# burst); gpt-5-mini 500s ~110s into pi's first real request and its small
+# daily quota drains fast. gpt-4.1-mini completes runs reliably. If you
+# change the model, re-validate a full run's side effects, not just the
+# first response. Details: ai-outfitter/actions
+# docs/research/inference-pricing.md.
 name: Issue triage
 on:
   issues:
