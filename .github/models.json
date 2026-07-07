@@ -11,8 +11,8 @@
       },
       "models": [
         {
-          "id": "deepseek/deepseek-v3-0324",
-          "name": "DeepSeek V3 (GitHub Models)",
+          "id": "meta/llama-4-maverick-17b-128e-instruct-fp8",
+          "name": "Llama 4 Maverick (GitHub Models)",
           "reasoning": false
         }
       ]

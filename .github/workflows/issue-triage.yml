@@ -1,6 +1,6 @@
 # Triage every newly opened issue: the agent classifies it as fix/feature/idea,
 # applies that one label, and leaves a comment (or asks a team member to look
-# when unclear). Runs on an open-source model (deepseek/deepseek-v3-0324) via GitHub
+# when unclear). Runs on an open-source model (meta/llama-4-maverick-17b-128e-instruct-fp8) via GitHub
 # Models — `models: read` is all the inference auth needed.
 name: Issue triage
 on:
