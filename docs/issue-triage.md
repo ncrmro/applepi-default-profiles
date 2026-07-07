@@ -38,7 +38,7 @@ gh label create idea --description "A rough direction that needs shaping before 
   structure what the filer provides but apply no labels; classification is the
   agent's call, so a mis-filed template is corrected at triage rather than
   propagated.
-- **Model** — `openai/gpt-5-mini`, served by
+- **Model** — `openai/gpt-4.1-mini`, served by
   [GitHub Models](https://docs.github.com/en/github-models). The workflow
   grants `models: read` on the built-in `GITHUB_TOKEN` and installs
   `.github/models.json` as a custom pi provider (`github-models`) — no external
@@ -49,13 +49,16 @@ gh label create idea --description "A rough direction that needs shaping before 
 - **Limits** — GitHub Models' included tier has low per-day request caps and
   tight per-request token limits, and organizations can disable GitHub Models
   entirely. One short run per opened issue fits comfortably; heavier agents
-  should use a paid provider key instead. Rate tiers bound the model choice
-  more than quality does: full `openai/gpt-5` sits in the most restricted
-  tier and 429'd mid-run on every attempt (even a lone serial run — an
-  agentic loop makes several requests within seconds), typically after
-  labeling but before commenting. `gpt-5-mini`'s tier survives the loop.
-  When changing models, validate a complete run's side effects, not just
-  that the first response comes back. Cost figures for these runs live in
+  should use a paid provider key instead. Included-tier limits bound the
+  model choice more than quality does (all measured July 2026): full
+  `openai/gpt-5` 429'd mid-run on every attempt (even a lone serial run —
+  an agentic loop makes several requests within seconds), typically after
+  labeling but before commenting; `openai/gpt-5-mini` answered trivial
+  probes fine but 500'd ~110s into pi's first real request on three
+  consecutive runs, and its ~50/day quota exhausts quickly. `gpt-4.1-mini`
+  completes runs reliably. When changing models, validate a complete run's
+  side effects, not just that the first response comes back. Cost figures
+  for these runs live in
   [ai-outfitter/actions docs/research/inference-pricing.md](https://github.com/ai-outfitter/actions/blob/main/docs/research/inference-pricing.md).
 - **Standards source** — the profile appends `CONTRIBUTING.md` to its system
   prompt (`repo_file:`), so contributor conventions and expectations are what
