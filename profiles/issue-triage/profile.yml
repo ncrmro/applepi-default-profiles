@@ -1,4 +1,4 @@
-id: issue_triage
+id: issue-triage
 label: Issue triage
 description: >-
   Launched by newly opened issues in CI. Classifies the issue as fix, feature,

@@ -2,7 +2,7 @@
 
 This repository demos running its own profiles in CI via
 [`ai-outfitter/actions`](https://github.com/ai-outfitter/actions). Every newly
-opened issue launches the `issue_triage` profile
+opened issue launches the `issue-triage` profile
 (`.github/workflows/issue-triage.yml`).
 
 ## What it does
@@ -17,6 +17,19 @@ label and asks a team member to take a look instead.
 This is deliberately the first step of an issue-driven pipeline: triage now,
 implementation agents later.
 
+## Setup
+
+The three labels must already exist in the repository — `gh issue edit
+--add-label` fails on labels that don't exist, and the profile forbids the
+agent from creating any. When porting this workflow to another repo, create
+them once:
+
+```bash
+gh label create fix --description "Something existing is broken or behaving wrongly" --color d73a4a
+gh label create feature --description "A concrete, buildable change" --color a2eeef
+gh label create idea --description "A rough direction that needs shaping before it is buildable" --color d4c5f9
+```
+
 ## How it runs
 
 - **Trigger** — `issues: [opened]`; not label-driven, the agent itself does the
@@ -29,7 +42,14 @@ implementation agents later.
   [GitHub Models](https://docs.github.com/en/github-models). The workflow
   grants `models: read` on the built-in `GITHUB_TOKEN` and installs
   `.github/models.json` as a custom pi provider (`github-models`) — no external
-  API keys or paid inference accounts required.
+  API keys or paid inference accounts required. Two wiring details matter:
+  the copy into `~/.pi/agent/models.json` must run *before* the action step,
+  and the config's `"apiKey": "$GITHUB_TOKEN"` resolves at runtime because
+  the action exports `GITHUB_TOKEN` on the step that launches the agent.
+- **Limits** — GitHub Models' included tier has low per-day request caps and
+  tight per-request token limits, and organizations can disable GitHub Models
+  entirely. One short run per opened issue fits comfortably; heavier agents
+  should use a paid provider key instead.
 - **Standards source** — the profile appends `CONTRIBUTING.md` to its system
   prompt (`repo_file:`), so contributor conventions and expectations are what
   the agent triages against; updating CONTRIBUTING.md updates the triage

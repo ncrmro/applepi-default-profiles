@@ -23,9 +23,10 @@ jobs:
         run: |
           mkdir -p "$HOME/.pi/agent"
           cp .github/models.json "$HOME/.pi/agent/models.json"
-      - uses: ai-outfitter/actions@v1
+      # Pinned to a commit until ai-outfitter/actions tags v1.
+      - uses: ai-outfitter/actions@f5b8e9913cf35bfe67522c70c136fe1e70ee84b7
         with:
-          profile: issue_triage
+          profile: issue-triage
           profile-source: profiles
           # Pass the issue by number only; the profile fetches content with
           # `gh` so untrusted issue text never enters workflow code.
